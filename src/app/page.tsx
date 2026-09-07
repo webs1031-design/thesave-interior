@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
@@ -212,14 +213,14 @@ export default function Home() {
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0b]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
-          <div>
+          <Link href="/">
             <p className="text-xl font-black tracking-tight sm:text-2xl">
               더세이브인테리어
             </p>
             <p className="mt-1 text-[11px] font-medium tracking-[0.15em] text-white/45">
               THE SAVE INTERIOR
             </p>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-3">
             <a
@@ -327,7 +328,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* HERO CARD */}
           <div className="relative">
             <div className="absolute -inset-8 rounded-full bg-[#d7b37a]/10 blur-3xl" />
 
@@ -683,25 +683,40 @@ export default function Home() {
               주거 전체인테리어와 상업 전체인테리어 상담을 진행하며 현장과
               공간 조건에 맞춰 전체적인 공사 방향을 계획합니다.
             </p>
+
+            <Link
+              href="/서울"
+              className="mt-7 inline-flex rounded-full border border-[#d7b37a]/40 bg-[#d7b37a]/10 px-6 py-3 text-sm font-black text-[#d7b37a] transition hover:bg-[#d7b37a] hover:text-black"
+            >
+              서울 지역 전체보기 →
+            </Link>
           </div>
 
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {districts.map((district) => (
-              <div
+              <Link
                 key={district}
-                className="group rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-5 text-center transition hover:border-[#d7b37a]/40 hover:bg-[#d7b37a]/5"
+                href={`/서울/${district}`}
+                className="group block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-5 text-center transition hover:-translate-y-1 hover:border-[#d7b37a]/50 hover:bg-[#d7b37a]/5"
               >
-                <p className="text-sm font-black text-white/75 group-hover:text-[#d7b37a]">
+                <p className="text-sm font-black text-white/75 transition group-hover:text-[#d7b37a]">
                   {district} 인테리어
                 </p>
-              </div>
+
+                <p className="mt-2 text-xs text-white/30 transition group-hover:text-white/55">
+                  지역 페이지 보기 →
+                </p>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section id="consult" className="border-t border-white/10 bg-[#101010] py-24">
+      <section
+        id="consult"
+        className="border-t border-white/10 bg-[#101010] py-24"
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="overflow-hidden rounded-[38px] bg-[#d7b37a] p-8 text-black sm:p-12 lg:p-16">
             <div className="grid gap-10 lg:grid-cols-[1fr_0.75fr] lg:items-center">
