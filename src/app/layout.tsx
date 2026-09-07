@@ -55,6 +55,12 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
 
+  verification: {
+    other: {
+      "naver-site-verification": "6e5a69976031f68cd9c35e65f951db5d8e0cde7b",
+    },
+  },
+
   formatDetection: {
     email: false,
     address: false,
