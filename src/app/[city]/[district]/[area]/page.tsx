@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Partners from "@/components/Partners";
 
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
@@ -311,6 +312,49 @@ const ctaTemplates = [
     `${area} 인테리어 현장의 위치와 공간 용도를 알려주시면 상담에 도움이 됩니다.`,
 ];
 
+const metadataTitleTemplates = [
+  (district: string, area: string) =>
+    `${area} 인테리어업체 | 아파트·매장·사무실 전체인테리어`,
+  (district: string, area: string) =>
+    `${area} 인테리어업체 | 집·주택·상가 전체인테리어 상담`,
+  (district: string, area: string) =>
+    `${area} 인테리어업체 | ${district} 주거·상업 전체인테리어`,
+  (district: string, area: string) =>
+    `${area} 인테리어업체 | 아파트·주택·매장 인테리어`,
+  (district: string, area: string) =>
+    `${area} 인테리어업체 | 집·사무실·상가 전체 시공`,
+  (district: string, area: string) =>
+    `${area} 인테리어업체 | 주거·상업 공간 전체인테리어`,
+];
+
+const metadataDescriptionTemplates = [
+  (district: string, area: string) =>
+    `서울 ${district} ${area} 인테리어업체. 집, 아파트, 주택 등 주거공간과 매장, 상가, 사무실 등 상업공간의 전체인테리어를 상담합니다. 공간 구조와 사용 목적을 확인해 전체 공사 범위와 방향을 계획합니다.`,
+  (district: string, area: string) =>
+    `${area}에서 전체인테리어를 준비한다면 아파트·집·주택의 생활 동선과 매장·상가·사무실의 운영 동선을 함께 확인하세요. 서울 ${district} ${area} 주거·상업 전체인테리어 상담을 진행합니다.`,
+  (district: string, area: string) =>
+    `${district} ${area} 인테리어업체를 찾고 있다면 현재 공간의 구조와 면적, 사용 목적을 먼저 확인하는 것이 중요합니다. 집·아파트·주택부터 매장·상가·사무실까지 공간 전체의 디자인과 공정을 계획합니다.`,
+  (district: string, area: string) =>
+    `서울 ${area} 전체인테리어 안내. 아파트, 집, 주택, 오피스텔 주거공간과 매장, 상가, 카페, 음식점, 사무실 등 상업공간을 대상으로 현장 조건에 맞는 전체 시공 방향을 상담합니다.`,
+  (district: string, area: string) =>
+    `${area} 인테리어는 같은 평수라도 공간 목적과 구조에 따라 계획이 달라질 수 있습니다. ${district}의 집·아파트·주택과 매장·상가·사무실 전체인테리어를 공간의 기능과 동선을 기준으로 상담합니다.`,
+  (district: string, area: string) =>
+    `${area} 인테리어업체 더세이브인테리어. 서울 ${district} 지역의 주거 및 상업공간을 대상으로 아파트·주택·집·매장·상가·사무실 전체인테리어의 공사 범위와 진행 방향을 확인합니다.`,
+];
+
+const editorialAngles = [
+  `공간의 첫인상보다 실제 생활과 운영 동선을 먼저 살펴보는 방식`,
+  `기존 구조와 설비 조건을 확인한 뒤 필요한 공정의 우선순위를 정하는 방식`,
+  `집과 아파트는 생활 편의성을, 매장과 사무실은 운영 효율을 중심으로 보는 방식`,
+  `마감재 선택보다 전체 공간의 연결성과 사용 목적을 먼저 정리하는 방식`,
+  `주거공간은 수납과 이동을, 상업공간은 고객과 직원의 흐름을 함께 고려하는 방식`,
+  `같은 평수라도 건물 형태와 공간 용도에 맞춰 계획을 달리하는 방식`,
+  `부분적인 변화보다 공간 전체의 디자인과 기능이 자연스럽게 이어지도록 보는 방식`,
+  `현장 상태와 공사 일정, 공간 사용 목적을 함께 확인해 전체 방향을 구체화하는 방식`,
+  `아파트·주택·집과 매장·상가·사무실의 서로 다른 사용 목적을 구분해 계획하는 방식`,
+  `공사 후 실제 사용 장면을 기준으로 동선과 공간 배치를 검토하는 방식`,
+];
+
 function stableHash(value: string) {
   let hash = 0;
 
@@ -392,15 +436,31 @@ export async function generateMetadata({
     };
   }
 
+  const seed = stableHash(
+    `${decodedCity}-${decodedDistrict}-${decodedArea}-metadata`,
+  );
+
+  const title = pick(metadataTitleTemplates, seed)(
+    decodedDistrict,
+    decodedArea,
+  );
+
+  const description = pick(
+    metadataDescriptionTemplates,
+    seed,
+    1,
+  )(decodedDistrict, decodedArea);
+
   return {
-    title: `${decodedArea} 인테리어업체 | 주거·상업 전체인테리어 더세이브인테리어`,
-    description: `${decodedDistrict} ${decodedArea} 인테리어업체. 아파트, 빌라, 주택, 오피스텔 주거 전체인테리어와 상가, 매장, 카페, 음식점, 사무실 상업 전체인테리어 상담. 더세이브인테리어.`,
+    title: { absolute: title },
+    description,
     keywords: [
       `${decodedArea} 인테리어`,
       `${decodedArea} 인테리어업체`,
       `${decodedArea} 전체인테리어`,
+      `${decodedArea} 집 인테리어`,
       `${decodedArea} 아파트 인테리어`,
-      `${decodedArea} 아파트 전체인테리어`,
+      `${decodedArea} 주택 인테리어`,
       `${decodedArea} 상가 인테리어`,
       `${decodedArea} 매장 인테리어`,
       `${decodedArea} 사무실 인테리어`,
@@ -409,6 +469,22 @@ export async function generateMetadata({
       `${decodedDistrict} 인테리어`,
       "더세이브인테리어",
     ],
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      locale: "ko_KR",
+      siteName: "더세이브인테리어",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -478,6 +554,12 @@ export default async function AreaPage({ params }: PageProps) {
     8,
   )(decodedArea);
 
+  const editorialAngle = pick(
+    editorialAngles,
+    seed,
+    9,
+  );
+
   const localPortfolio =
     selectedPortfolio[0].district === decodedDistrict &&
     (selectedPortfolio[0].area === decodedArea ||
@@ -522,8 +604,39 @@ export default async function AreaPage({ params }: PageProps) {
     },
   ];
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${decodedArea} 인테리어업체 더세이브인테리어`,
+    serviceType: [
+      "전체인테리어",
+      "아파트 인테리어",
+      "집 인테리어",
+      "주택 인테리어",
+      "매장 인테리어",
+      "상가 인테리어",
+      "사무실 인테리어",
+    ],
+    areaServed: [
+      { "@type": "AdministrativeArea", name: decodedArea },
+      { "@type": "AdministrativeArea", name: decodedDistrict },
+      { "@type": "AdministrativeArea", name: "서울" },
+    ],
+    provider: {
+      "@type": "Organization",
+      name: "더세이브인테리어",
+    },
+    description: `서울 ${decodedDistrict} ${decodedArea}의 집, 아파트, 주택, 매장, 상가, 사무실 등 주거·상업공간 전체인테리어 상담`,
+  };
+
   return (
     <main className="min-h-screen bg-[#0b0b0b] pb-20 text-white md:pb-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd),
+        }}
+      />
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0b]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
@@ -632,6 +745,11 @@ export default async function AreaPage({ params }: PageProps) {
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-white/55">
               {intro}
+            </p>
+
+            <p className="mt-4 max-w-2xl border-l-2 border-[#d7b37a] pl-5 text-sm font-semibold leading-7 text-white/45 sm:text-base">
+              이 페이지에서는 {editorialAngle}을 중심으로 {decodedArea}의
+              전체인테리어 방향을 확인합니다.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -1026,6 +1144,8 @@ export default async function AreaPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <Partners />
 
       {/* CONTACT */}
       <section className="py-24">

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Partners from "../../../components/Partners";
+
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
 
@@ -975,6 +977,63 @@ const faqQuestionSets = [
   (district: string) => `${district} 인테리어 상담은 어떻게 시작하나요?`,
 ];
 
+const metaTitleLeads = [
+  (district: string) => `${district} 인테리어업체`,
+  (district: string) => `${district} 전체인테리어업체`,
+  (district: string) => `${district} 주거·상업 인테리어업체`,
+  (district: string) => `${district} 아파트·매장 인테리어업체`,
+  (district: string) => `${district} 집·사무실 인테리어업체`,
+] as const;
+
+const metaTitleTails = [
+  "아파트·주택·매장·사무실 전체시공",
+  "주거·상업 공간 전체인테리어",
+  "집·아파트·상가·사무실 공간설계",
+  "매장·주택·사무실 전체인테리어 상담",
+  "주거와 상업공간 전체 시공 안내",
+] as const;
+
+const metaDescriptionTemplates = [
+  (district: string, feature: string) =>
+    `${district} 인테리어업체 더세이브인테리어. ${feature}을 비롯해 집, 아파트, 주택, 매장, 상가, 사무실의 주거·상업 전체인테리어를 상담합니다. 공간 구조와 사용 목적을 확인해 전체 공사 범위와 방향을 계획합니다.`,
+  (district: string, feature: string) =>
+    `${district} 전체인테리어를 준비한다면 현장 구조와 사용 목적부터 확인하세요. 더세이브인테리어는 ${feature}, 집·아파트·주택·매장·사무실 등 주거 및 상업공간의 전체 설계와 시공을 상담합니다.`,
+  (district: string, feature: string) =>
+    `${district} 인테리어업체를 찾는 분을 위한 지역 안내입니다. ${feature}과 집, 아파트, 주택, 매장, 상가, 사무실까지 부분 시공이 아닌 공간 전체의 인테리어 방향과 공정을 확인합니다.`,
+  (district: string, feature: string) =>
+    `${district} 주거·상업 인테리어 상담. ${feature}을 중심으로 집·아파트·주택의 생활공간과 매장·상가·사무실의 운영공간을 현장 조건에 맞춰 전체인테리어로 계획합니다.`,
+] as const;
+
+const editorialAngles = [
+  "기존 구조와 설비 상태를 먼저 확인해 불필요한 변경을 줄이는 계획",
+  "가족의 생활 동선과 수납을 중심으로 주거공간의 연결성을 정리하는 방식",
+  "고객 동선과 직원 업무 흐름을 함께 고려하는 상업공간 구성",
+  "공간의 첫인상과 실제 사용 편의성을 함께 맞추는 전체인테리어 계획",
+  "주방·거실·침실처럼 서로 연결되는 공간의 관계를 우선하는 주거 설계",
+  "매장·상가·사무실의 운영 목적에 맞춰 기능과 분위기를 함께 정리하는 방식",
+  "같은 평수라도 현장 구조와 사용 목적에 따라 공사 범위를 달리 보는 접근",
+  "마감재 선택보다 공간의 목적과 동선을 먼저 정리하는 전체공간 계획",
+  "주거와 상업공간을 구분해 실제 이용자의 움직임을 기준으로 설계하는 방식",
+  "현재 공간에서 유지할 요소와 새롭게 구성할 요소를 나눠 전체 방향을 잡는 계획",
+  "디자인 이미지보다 현장 조건과 사용성을 먼저 확인하는 인테리어 접근",
+  "전체 공정이 자연스럽게 이어지도록 설계·공사 순서를 함께 보는 방식",
+] as const;
+
+const localGuideLeadTemplates = [
+  (district: string) => `${district}에서 전체인테리어를 준비할 때 먼저 볼 것`,
+  (district: string) => `${district} 인테리어 계획을 현장 기준으로 정리하는 방법`,
+  (district: string) => `${district} 주거·상업공간을 전체적으로 바꿀 때의 기준`,
+  (district: string) => `${district} 인테리어업체 상담 전 확인할 공간 조건`,
+  (district: string) => `${district} 전체인테리어에서 구조와 동선을 함께 보는 이유`,
+] as const;
+
+const ctaHeadings = [
+  (district: string) => `${district} 전체인테리어 상담이 필요하신가요?`,
+  (district: string) => `${district} 공간을 전체적으로 새롭게 계획하세요`,
+  (district: string) => `${district} 주거·상업 인테리어, 현장부터 확인합니다`,
+  (district: string) => `${district} 인테리어 상담은 공간 정보부터 시작합니다`,
+] as const;
+
 function stableHash(value: string) {
   let hash = 0;
 
@@ -985,8 +1044,11 @@ function stableHash(value: string) {
   return hash;
 }
 
-function pick<T>(items: T[], seed: number, offset = 0): T {
-  return items[(seed + offset) % items.length];
+function pick<T>(items: readonly T[], seed: number, offset = 0): T {
+  const mixed = stableHash(
+    `${seed}|${offset}|${items.length}|the-save-interior-district`,
+  );
+  return items[mixed % items.length];
 }
 
 function getPortfolio(district: string) {
@@ -1021,30 +1083,58 @@ export async function generateMetadata({
 
   const decodedCity = decodeURIComponent(city);
   const decodedDistrict = decodeURIComponent(district);
-
   const data = districtData[decodedDistrict];
 
   if (decodedCity !== "서울" || !data) {
     return {
       title: "더세이브인테리어",
+      robots: { index: false, follow: false },
     };
   }
 
+  const seed = stableHash(`metadata|${decodedCity}|${decodedDistrict}`);
+  const titleLead = pick(metaTitleLeads, seed, 1)(decodedDistrict);
+  const titleTail = pick(metaTitleTails, seed, 2);
+  const metaTitle = `${titleLead} | ${titleTail}`;
+  const metaDescription = pick(metaDescriptionTemplates, seed, 3)(
+    decodedDistrict,
+    data.feature,
+  );
+
   return {
-    title: `${decodedDistrict} 인테리어업체 | 주거·상업 전체인테리어 더세이브인테리어`,
-    description: `${decodedDistrict} 인테리어업체 더세이브인테리어. ${data.feature} 등 주거 및 상업공간 전체인테리어 상담. 부분인테리어가 아닌 공간 전체의 설계와 시공을 진행합니다.`,
+    title: { absolute: metaTitle },
+    description: metaDescription,
     keywords: [
       `${decodedDistrict} 인테리어`,
       `${decodedDistrict} 인테리어업체`,
       `${decodedDistrict} 전체인테리어`,
+      `${decodedDistrict} 집 인테리어`,
       `${decodedDistrict} 아파트 인테리어`,
+      `${decodedDistrict} 주택 인테리어`,
       `${decodedDistrict} 상가 인테리어`,
       `${decodedDistrict} 매장 인테리어`,
       `${decodedDistrict} 사무실 인테리어`,
       `${decodedDistrict} 주거 인테리어`,
       `${decodedDistrict} 상업 인테리어`,
+      "서울 인테리어업체",
       "더세이브인테리어",
     ],
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      type: "website",
+      locale: "ko_KR",
+      siteName: "더세이브인테리어",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+    },
   };
 }
 
@@ -1078,6 +1168,11 @@ export default async function DistrictPage({ params }: PageProps) {
   const guideHeading = pick(guideHeadings, seed, 3);
   const selectedProcess = pick(processSets, seed, 4);
   const selectedPortfolio = getPortfolio(decodedDistrict);
+  const editorialAngle = pick(editorialAngles, seed, 10);
+  const localGuideLead = pick(localGuideLeadTemplates, seed, 11)(
+    decodedDistrict,
+  );
+  const ctaHeading = pick(ctaHeadings, seed, 12)(decodedDistrict);
 
   const heroLines = heroTitle.split("\n");
 
@@ -1095,8 +1190,37 @@ export default async function DistrictPage({ params }: PageProps) {
     "현장 위치, 공간 종류, 대략적인 평수, 현재 상태와 원하는 공사 일정 및 인테리어 방향을 알려주시면 상담에 도움이 됩니다.",
   ];
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${decodedDistrict} 인테리어업체 더세이브인테리어`,
+    serviceType: [
+      "전체인테리어",
+      "집 인테리어",
+      "아파트 인테리어",
+      "주택 인테리어",
+      "매장 인테리어",
+      "상가 인테리어",
+      "사무실 인테리어",
+    ],
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "서울" },
+      { "@type": "AdministrativeArea", name: decodedDistrict },
+    ],
+    provider: {
+      "@type": "Organization",
+      name: "더세이브인테리어",
+    },
+    description: `${decodedDistrict}의 집·아파트·주택 등 주거공간과 매장·상가·사무실 등 상업공간 전체인테리어 상담`,
+  };
+
   return (
     <main className="min-h-screen bg-[#0b0b0b] pb-20 text-white md:pb-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0b]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
@@ -1192,7 +1316,9 @@ export default async function DistrictPage({ params }: PageProps) {
             </p>
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-white/55">
-              {data.intro}
+              {data.intro} 이 페이지에서는 {editorialAngle}을 중심으로
+              {decodedDistrict}의 집·아파트·주택 등 주거공간과
+              매장·상가·사무실 등 상업공간 전체인테리어를 안내합니다.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -1545,9 +1671,9 @@ export default async function DistrictPage({ params }: PageProps) {
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
-                {decodedDistrict} 인테리어,
+                {localGuideLead}
                 <br />
-                {guideHeading}
+                <span className="text-[#d7b37a]">{guideHeading}</span>
               </h2>
             </div>
 
@@ -1568,6 +1694,13 @@ export default async function DistrictPage({ params }: PageProps) {
                 상업공간에서는 {data.commercial} 고객이 공간에 들어와
                 이동하고 머무르는 과정과 직원이 실제로 업무를 수행하는
                 흐름을 함께 고려하면 공간의 기능성을 높일 수 있습니다.
+              </p>
+
+              <p>
+                {decodedDistrict}에서는 {editorialAngle}을 기준으로 공간을
+                살펴봅니다. 집·아파트·주택은 생활 방식과 수납, 이동 동선을,
+                매장·상가·사무실은 고객 경험과 실제 운영 흐름을 함께 확인해
+                전체인테리어의 범위와 방향을 정리합니다.
               </p>
 
               <p>
@@ -1615,6 +1748,9 @@ export default async function DistrictPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* PARTNERS */}
+      <Partners />
+
       {/* CTA */}
       <section className="border-y border-white/10 bg-[#101010] py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -1626,14 +1762,13 @@ export default async function DistrictPage({ params }: PageProps) {
                 </p>
 
                 <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
-                  {decodedDistrict} 전체인테리어
-                  <br />
-                  상담부터 시작하세요
+                  {ctaHeading}
                 </h2>
 
                 <p className="mt-6 max-w-2xl leading-8 text-black/65">
-                  {data.cta} 현장 주소와 공간 종류, 대략적인 평수와
-                  원하는 전체인테리어 방향을 알려주시면 상담에 도움이 됩니다.
+                  {data.cta} 현장 주소와 공간 종류, 대략적인 평수, 현재 구조와
+                  원하는 전체인테리어 방향을 알려주시면 {decodedDistrict} 현장에
+                  필요한 공사 범위를 확인하는 데 도움이 됩니다.
                 </p>
               </div>
 

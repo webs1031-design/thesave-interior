@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Partners from "../../components/Partners";
+
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
 
@@ -178,14 +180,23 @@ export async function generateMetadata({
   }
 
   return {
-    title: "서울 인테리어업체 | 주거·상업 전체인테리어 더세이브인테리어",
+    title: {
+      absolute:
+        "서울 인테리어업체 | 아파트·주택·매장·사무실 전체인테리어",
+    },
     description:
-      "서울 인테리어업체 더세이브인테리어. 서울 25개 구 아파트, 빌라, 주택, 오피스텔 주거 전체인테리어와 상가, 매장, 카페, 음식점, 사무실 상업 전체인테리어 상담.",
+      "서울 인테리어업체 더세이브인테리어. 서울 25개 구 아파트·집·주택·빌라·오피스텔 주거 전체인테리어와 매장·상가·카페·음식점·사무실 상업 전체인테리어 상담. 공간 전체 설계와 시공을 진행합니다.",
+    robots: {
+      index: true,
+      follow: true,
+    },
     keywords: [
       "서울 인테리어",
       "서울 인테리어업체",
       "서울 전체인테리어",
       "서울 아파트 인테리어",
+      "서울 집 인테리어",
+      "서울 주택 인테리어",
       "서울 상가 인테리어",
       "서울 매장 인테리어",
       "서울 사무실 인테리어",
@@ -204,8 +215,37 @@ export default async function CityPage({ params }: PageProps) {
     notFound();
   }
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "서울 전체인테리어 서비스",
+    serviceType: [
+      "인테리어",
+      "전체인테리어",
+      "아파트 인테리어",
+      "집 인테리어",
+      "주택 인테리어",
+      "매장 인테리어",
+      "사무실 인테리어",
+    ],
+    provider: {
+      "@type": "Organization",
+      name: "더세이브인테리어",
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "서울",
+    },
+    description:
+      "서울 25개 구의 아파트, 집, 주택, 빌라, 오피스텔과 매장, 상가, 카페, 음식점, 사무실을 대상으로 공간 전체의 인테리어 상담과 시공을 진행합니다.",
+  };
+
   return (
     <main className="min-h-screen bg-[#0b0b0b] pb-20 text-white md:pb-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0b]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
@@ -276,22 +316,22 @@ export default async function CityPage({ params }: PageProps) {
             </div>
 
             <h1 className="mt-6 text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
-              서울 인테리어,
+              서울 인테리어업체,
               <br />
               <span className="text-[#d7b37a]">
-                공간 전체를 설계합니다
+                주거와 상업공간 전체를 설계합니다
               </span>
             </h1>
 
             <p className="mt-7 text-xl font-black text-white/85">
-              서울 주거 · 상업 전체인테리어 전문
+              서울 아파트 · 집 · 주택 · 매장 · 사무실 전체인테리어
             </p>
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-white/55">
-              서울의 아파트, 빌라, 주택, 오피스텔부터 상가, 매장,
+              서울의 아파트, 집, 빌라, 주택, 오피스텔부터 상가, 매장,
               카페, 음식점, 사무실까지 공간의 용도와 구조를 고려한
-              전체인테리어를 진행합니다. 부분적인 공사가 아닌 공간 전체의
-              디자인과 동선, 마감의 연결성을 함께 계획합니다.
+              전체인테리어를 진행합니다. 부분적인 공사가 아니라 공간 전체의
+              디자인, 생활·업무 동선, 마감과 공정의 연결성을 함께 계획합니다.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -583,34 +623,42 @@ export default async function CityPage({ params }: PageProps) {
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
-                서울 인테리어는
+                서울 전체인테리어는
                 <br />
-                현장에 맞는 계획부터
+                공간의 목적과 현장 확인부터
               </h2>
             </div>
 
             <div className="space-y-6 text-base leading-8 text-white/55">
               <p>
-                서울에서 전체인테리어를 계획할 때는 디자인만 보는 것보다
-                현재 공간의 구조와 건물 조건, 사용 목적을 함께 확인하는 것이
-                중요합니다. 아파트와 빌라 같은 주거공간은 가족의 생활 방식과
-                수납, 주방과 거실의 연결, 침실 구성 등 실제 생활에 필요한
-                요소를 기준으로 전체 공간을 계획해야 합니다.
+                서울에서 아파트, 집, 주택, 빌라, 오피스텔 전체인테리어를
+                계획할 때는 디자인만 보는 것보다 현재 공간의 구조와 건물 조건,
+                가족 구성과 생활 목적을 함께 확인하는 것이 중요합니다. 거실과
+                주방의 연결, 침실 구성, 수납과 이동 동선까지 집 전체가 하나의
+                흐름으로 이어지도록 계획해야 실제 생활의 편의성도 높일 수 있습니다.
               </p>
 
               <p>
-                상가나 매장, 카페, 음식점, 사무실 같은 상업공간은 고객의
-                이동 동선과 직원의 업무 흐름, 업종에 필요한 설비와 공간
-                구성을 함께 고려해야 합니다. 같은 평수의 공간이라도 어떤
-                업종으로 사용하는지에 따라 필요한 구조와 인테리어 방향이
-                달라질 수 있습니다.
+                서울의 상가, 매장, 카페, 음식점, 사무실 같은 상업공간은 고객의
+                이동 동선과 직원의 업무 흐름, 업종에 필요한 설비와 브랜드가
+                전달해야 할 분위기를 함께 고려해야 합니다. 같은 평수라도 매장과
+                사무실은 필요한 구조와 기능이 다르기 때문에 실제 운영 방식을
+                기준으로 전체인테리어 방향을 구체화하는 과정이 중요합니다.
               </p>
 
               <p>
-                더세이브인테리어는 서울 25개 구의 주거 및 상업공간을
-                대상으로 전체인테리어 상담을 진행합니다. 부분적인 시공이
-                아니라 공간 전체를 대상으로 공사 방향을 계획하고 현장의
-                조건에 맞춰 필요한 공정과 일정을 확인합니다.
+                더세이브인테리어는 서울 25개 구의 주거 및 상업공간을 대상으로
+                전체인테리어 상담을 진행합니다. 부분인테리어가 아니라 공간 전체를
+                대상으로 공사 방향을 계획하며, 현장 상태와 사용 목적을 확인한 뒤
+                필요한 공정과 일정, 공간별 우선순위를 정리합니다.
+              </p>
+
+              <p>
+                강남구, 서초구, 송파구, 마포구, 용산구, 성동구를 비롯한 서울
+                전 지역에서 주거와 상업공간의 용도에 맞춰 상담을 진행합니다.
+                아파트와 주택처럼 생활 중심의 공간은 편의성과 수납을, 매장과
+                사무실처럼 운영 중심의 공간은 고객 경험과 업무 효율을 함께
+                살펴 전체 공간의 완성도를 계획합니다.
               </p>
             </div>
           </div>
@@ -648,6 +696,8 @@ export default async function CityPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <Partners />
 
       {/* CONTACT */}
       <section className="py-24">
