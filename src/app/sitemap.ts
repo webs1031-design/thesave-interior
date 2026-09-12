@@ -543,18 +543,14 @@ const seoulAreas: Record<string, string[]> = {
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const urls: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/${encodeURIComponent("서울")}`,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -565,7 +561,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/${encodeURIComponent(
         "서울",
       )}/${encodeURIComponent(district)}`,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
     });
@@ -577,7 +572,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         )}/${encodeURIComponent(
           district,
         )}/${encodeURIComponent(area)}`,
-        lastModified: now,
         changeFrequency: "monthly",
         priority: 0.7,
       });

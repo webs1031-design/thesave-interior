@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 
 import Partners from "../../../components/Partners";
 
+const SITE_URL = "https://interior.thesavecompany.com";
+
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
 
@@ -1168,9 +1170,16 @@ export async function generateMetadata({
     data.feature,
   );
 
+  const canonicalUrl = `${SITE_URL}/${encodeURIComponent(
+    "서울",
+  )}/${encodeURIComponent(decodedDistrict)}`;
+
   return {
     title: { absolute: metaTitle },
     description: metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     keywords: [
       `${decodedDistrict} 인테리어`,
       `${decodedDistrict} 인테리어업체`,
@@ -1196,6 +1205,7 @@ export async function generateMetadata({
       type: "website",
       locale: "ko_KR",
       siteName: "더세이브인테리어",
+      url: canonicalUrl,
     },
     twitter: {
       card: "summary_large_image",

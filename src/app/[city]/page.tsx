@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 
 import Partners from "../../components/Partners";
 
+const SITE_URL = "https://interior.thesavecompany.com";
+
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
 
@@ -186,9 +188,29 @@ export async function generateMetadata({
     },
     description:
       "서울 인테리어업체 더세이브인테리어. 서울 25개 구의 아파트·집·주택·빌라·오피스텔 주거 전체인테리어와 매장·상가·카페·음식점·사무실 상업 전체인테리어를 공간 목적과 동선에 맞춰 설계·시공합니다.",
+    alternates: {
+      canonical: `${SITE_URL}/${encodeURIComponent("서울")}`,
+    },
     robots: {
       index: true,
       follow: true,
+    },
+    openGraph: {
+      type: "website",
+      locale: "ko_KR",
+      siteName: "더세이브인테리어",
+      url: `${SITE_URL}/${encodeURIComponent("서울")}`,
+      title:
+        "서울 인테리어업체 | 아파트·주택·매장·사무실 전체인테리어 전문",
+      description:
+        "서울 인테리어업체 더세이브인테리어. 서울 25개 구의 아파트·집·주택·빌라·오피스텔 주거 전체인테리어와 매장·상가·카페·음식점·사무실 상업 전체인테리어를 공간 목적과 동선에 맞춰 설계·시공합니다.",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title:
+        "서울 인테리어업체 | 아파트·주택·매장·사무실 전체인테리어 전문",
+      description:
+        "서울 인테리어업체 더세이브인테리어. 서울 25개 구의 주거·상업 전체인테리어를 공간 목적과 동선에 맞춰 설계·시공합니다.",
     },
     keywords: [
       "서울 인테리어",

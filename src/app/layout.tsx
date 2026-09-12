@@ -57,7 +57,8 @@ export const metadata: Metadata = {
 
   verification: {
     other: {
-      "naver-site-verification": "6e5a69976031f68cd9c35e65f951db5d8e0cde7b",
+      "naver-site-verification":
+        "6e5a69976031f68cd9c35e65f951db5d8e0cde7b",
     },
   },
 
@@ -65,10 +66,6 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
-  },
-
-  alternates: {
-    canonical: "/",
   },
 
   openGraph: {

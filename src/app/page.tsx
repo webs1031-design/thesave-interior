@@ -1,6 +1,18 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Partners from "../components/Partners";
+
+const SITE_URL = "https://interior.thesavecompany.com";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: SITE_URL,
+  },
+};
 
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
