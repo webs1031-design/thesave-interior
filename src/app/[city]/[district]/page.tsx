@@ -915,11 +915,31 @@ const portfolio = [
 ];
 
 const heroTitles = [
-  (district: string) => `${district} 인테리어,\n공간 전체를 새롭게`,
-  (district: string) => `${district} 전체인테리어,\n생활과 공간을 연결합니다`,
-  (district: string) => `${district} 인테리어업체,\n공간의 목적부터 생각합니다`,
-  (district: string) => `${district} 주거·상업 인테리어,\n전체 공간을 계획합니다`,
-  (district: string) => `${district} 인테리어,\n처음부터 전체를 바라봅니다`,
+  (district: string) => `${district} 인테리어업체,\n생활 동선을 다시 설계합니다`,
+  (district: string) => `${district} 전체인테리어,\n집과 일터의 흐름을 바꿉니다`,
+  (district: string) => `${district} 주거 인테리어,\n생활 방식에 맞춰 전체를 계획합니다`,
+  (district: string) => `${district} 상업 인테리어,\n운영 동선부터 공간을 설계합니다`,
+  (district: string) => `${district} 인테리어,\n아파트부터 매장까지 한 번에`,
+  (district: string) => `${district} 인테리어업체,\n구조와 기능부터 차근차근`,
+  (district: string) => `${district} 전체인테리어,\n공간의 목적을 먼저 봅니다`,
+  (district: string) => `${district} 인테리어,\n주거와 상업을 다르게 설계합니다`,
+  (district: string) => `${district} 아파트·주택 인테리어,\n생활 중심으로 다시 구성합니다`,
+  (district: string) => `${district} 매장·사무실 인테리어,\n운영 효율을 공간에 담습니다`,
+  (district: string) => `${district} 인테리어업체,\n전체 공간의 연결성을 만듭니다`,
+  (district: string) => `${district} 전체인테리어,\n현장 조건에 맞춰 설계합니다`,
+  (district: string) => `${district} 인테리어,\n디자인보다 사용성을 먼저`,
+  (district: string) => `${district} 공간 리뉴얼,\n처음부터 끝까지 전체인테리어`,
+  (district: string) => `${district} 주거·상업 인테리어,\n공간마다 다른 답을 찾습니다`,
+  (district: string) => `${district} 인테리어업체,\n아파트·상가·사무실 맞춤 계획`,
+  (district: string) => `${district} 전체인테리어,\n구조·동선·마감까지 함께`,
+  (district: string) => `${district} 인테리어,\n공간의 쓰임을 새롭게 정리합니다`,
+  (district: string) => `${district} 집·매장 인테리어,\n생활과 운영을 함께 고려합니다`,
+  (district: string) => `${district} 인테리어업체,\n현장부터 전체 공정을 설계합니다`,
+  (district: string) => `${district} 전체인테리어,\n공간 활용도를 높이는 방향으로`,
+  (district: string) => `${district} 인테리어,\n주거는 편안하게 상업은 효율적으로`,
+  (district: string) => `${district} 아파트·사무실 인테리어,\n공간 목적에 맞춘 전체 시공`,
+  (district: string) => `${district} 인테리어업체,\n부분이 아닌 전체를 봅니다`,
+  (district: string) => `${district} 전체인테리어,\n실제 사용하는 사람을 중심으로`,
 ];
 
 const residentialHeadings = [
@@ -979,29 +999,59 @@ const faqQuestionSets = [
 
 const metaTitleLeads = [
   (district: string) => `${district} 인테리어업체`,
-  (district: string) => `${district} 전체인테리어업체`,
-  (district: string) => `${district} 주거·상업 인테리어업체`,
-  (district: string) => `${district} 아파트·매장 인테리어업체`,
-  (district: string) => `${district} 집·사무실 인테리어업체`,
+  (district: string) => `${district} 전체인테리어`,
+  (district: string) => `${district} 아파트 인테리어업체`,
+  (district: string) => `${district} 주택 인테리어업체`,
+  (district: string) => `${district} 매장 인테리어업체`,
+  (district: string) => `${district} 사무실 인테리어업체`,
+  (district: string) => `${district} 주거 인테리어업체`,
+  (district: string) => `${district} 상업 인테리어업체`,
+  (district: string) => `${district} 집 인테리어`,
+  (district: string) => `${district} 상가 인테리어`,
+  (district: string) => `${district} 주거·상업 인테리어`,
+  (district: string) => `${district} 공간 전체인테리어`,
 ] as const;
 
 const metaTitleTails = [
   "아파트·주택·매장·사무실 전체시공",
-  "주거·상업 공간 전체인테리어",
-  "집·아파트·상가·사무실 공간설계",
-  "매장·주택·사무실 전체인테리어 상담",
-  "주거와 상업공간 전체 시공 안내",
+  "집·아파트·상가 공간 전체 설계",
+  "주거공간과 상업공간 맞춤 전체시공",
+  "생활동선과 운영동선을 고려한 공간설계",
+  "아파트·빌라·주택부터 상가·사무실까지",
+  "현장 구조에 맞춘 주거·상업 전체인테리어",
+  "매장·카페·사무실과 주거공간 전체시공",
+  "공간 구조·동선·마감까지 전체 계획",
+  "집·주택·매장·상가 전체인테리어 상담",
+  "주거와 상업 공간을 목적에 맞게 설계",
+  "아파트·오피스텔·매장·사무실 전체공사",
+  "부분시공이 아닌 공간 전체인테리어",
 ] as const;
 
 const metaDescriptionTemplates = [
   (district: string, feature: string) =>
-    `${district} 인테리어업체 더세이브인테리어. ${feature}을 비롯해 집, 아파트, 주택, 매장, 상가, 사무실의 주거·상업 전체인테리어를 상담합니다. 공간 구조와 사용 목적을 확인해 전체 공사 범위와 방향을 계획합니다.`,
+    `${district} 인테리어업체 더세이브인테리어. ${feature}을 중심으로 아파트·집·주택과 매장·상가·사무실의 전체인테리어를 상담합니다. 현장 구조와 공간 목적을 확인해 전체 공사 방향을 계획합니다.`,
   (district: string, feature: string) =>
-    `${district} 전체인테리어를 준비한다면 현장 구조와 사용 목적부터 확인하세요. 더세이브인테리어는 ${feature}, 집·아파트·주택·매장·사무실 등 주거 및 상업공간의 전체 설계와 시공을 상담합니다.`,
+    `${district} 전체인테리어를 준비한다면 공간의 용도와 동선부터 확인하세요. ${feature}을 비롯해 아파트·주택·매장·사무실 등 주거와 상업공간의 전체 설계 및 시공을 안내합니다.`,
   (district: string, feature: string) =>
-    `${district} 인테리어업체를 찾는 분을 위한 지역 안내입니다. ${feature}과 집, 아파트, 주택, 매장, 상가, 사무실까지 부분 시공이 아닌 공간 전체의 인테리어 방향과 공정을 확인합니다.`,
+    `${district} 아파트·주택 인테리어부터 매장·상가·사무실 인테리어까지. ${feature}을 고려해 생활공간과 운영공간의 쓰임에 맞는 전체인테리어 방향을 계획합니다.`,
   (district: string, feature: string) =>
-    `${district} 주거·상업 인테리어 상담. ${feature}을 중심으로 집·아파트·주택의 생활공간과 매장·상가·사무실의 운영공간을 현장 조건에 맞춰 전체인테리어로 계획합니다.`,
+    `${district} 인테리어 상담 페이지입니다. ${feature}을 바탕으로 집·아파트·주택의 생활 동선과 매장·상가·사무실의 운영 동선을 구분해 공간 전체를 설계합니다.`,
+  (district: string, feature: string) =>
+    `${district} 주거·상업 인테리어업체를 찾는다면 현장 상태와 공간 목적을 먼저 확인해야 합니다. ${feature}과 함께 구조, 동선, 수납, 운영 효율을 전체 공사 범위에 반영합니다.`,
+  (district: string, feature: string) =>
+    `${district} 집·아파트·매장·사무실 전체인테리어 상담. ${feature}을 포함해 현재 구조에서 유지할 부분과 새롭게 구성할 부분을 나누고 전체 시공 방향을 정리합니다.`,
+  (district: string, feature: string) =>
+    `${district} 상가·매장 인테리어와 아파트·주택 인테리어를 공간 성격에 맞춰 진행합니다. ${feature}을 기준으로 디자인과 기능이 자연스럽게 연결되도록 전체 공정을 계획합니다.`,
+  (district: string, feature: string) =>
+    `${district} 인테리어업체 더세이브인테리어는 ${feature}을 고려해 주거와 상업공간을 각각 다른 기준으로 설계합니다. 아파트·집·주택·매장·상가·사무실 전체인테리어 상담이 가능합니다.`,
+  (district: string, feature: string) =>
+    `${district} 전체인테리어는 같은 평수라도 공간 용도와 기존 구조에 따라 계획이 달라집니다. ${feature}을 확인하고 주거공간과 상업공간의 공사 범위와 진행 순서를 현장에 맞춰 정리합니다.`,
+  (district: string, feature: string) =>
+    `${district} 인테리어를 계획할 때는 디자인 이미지보다 실제 사용성과 공사 조건이 중요합니다. ${feature}을 바탕으로 아파트·주택·매장·사무실 전체 공간의 방향을 상담합니다.`,
+  (district: string, feature: string) =>
+    `${district} 주거 전체인테리어와 상업 전체인테리어 안내. ${feature}을 중심으로 집·아파트·주택의 생활 편의성과 매장·상가·사무실의 운영 효율을 함께 검토합니다.`,
+  (district: string, feature: string) =>
+    `${district} 인테리어업체 상담 전 공간 종류와 면적, 현재 구조를 확인해보세요. ${feature}을 고려해 아파트·주택·상가·매장·사무실의 전체 시공 범위를 구체적으로 계획합니다.`,
 ] as const;
 
 const editorialAngles = [
@@ -1017,21 +1067,38 @@ const editorialAngles = [
   "현재 공간에서 유지할 요소와 새롭게 구성할 요소를 나눠 전체 방향을 잡는 계획",
   "디자인 이미지보다 현장 조건과 사용성을 먼저 확인하는 인테리어 접근",
   "전체 공정이 자연스럽게 이어지도록 설계·공사 순서를 함께 보는 방식",
+  "수납과 이동 경로를 함께 정리해 생활공간의 효율을 높이는 방식",
+  "고객이 머무는 공간과 직원이 일하는 공간의 역할을 구분하는 상업공간 계획",
+  "채광과 개방감, 가구 배치까지 실제 사용 장면을 기준으로 검토하는 접근",
+  "공간별 기능을 나누되 전체 분위기는 하나의 흐름으로 연결하는 설계 방식",
 ] as const;
 
 const localGuideLeadTemplates = [
-  (district: string) => `${district}에서 전체인테리어를 준비할 때 먼저 볼 것`,
+  (district: string) => `${district}에서 전체인테리어를 준비할 때 먼저 확인할 것`,
   (district: string) => `${district} 인테리어 계획을 현장 기준으로 정리하는 방법`,
   (district: string) => `${district} 주거·상업공간을 전체적으로 바꿀 때의 기준`,
-  (district: string) => `${district} 인테리어업체 상담 전 확인할 공간 조건`,
+  (district: string) => `${district} 인테리어업체 상담 전 체크할 공간 조건`,
   (district: string) => `${district} 전체인테리어에서 구조와 동선을 함께 보는 이유`,
+  (district: string) => `${district} 아파트·주택 인테리어에서 생활동선을 보는 방법`,
+  (district: string) => `${district} 매장·사무실 인테리어에서 운영동선을 정리하는 기준`,
+  (district: string) => `${district} 인테리어 공사 범위를 정하기 전에 확인할 사항`,
+  (district: string) => `${district} 공간을 전체적으로 바꿀 때 순서를 잡는 방법`,
+  (district: string) => `${district} 주거와 상업 인테리어를 다르게 계획해야 하는 이유`,
+  (district: string) => `${district} 전체인테리어 상담 전에 준비하면 좋은 정보`,
+  (district: string) => `${district} 인테리어에서 디자인보다 먼저 볼 현장 조건`,
 ] as const;
 
 const ctaHeadings = [
-  (district: string) => `${district} 전체인테리어 상담이 필요하신가요?`,
-  (district: string) => `${district} 공간을 전체적으로 새롭게 계획하세요`,
-  (district: string) => `${district} 주거·상업 인테리어, 현장부터 확인합니다`,
-  (district: string) => `${district} 인테리어 상담은 공간 정보부터 시작합니다`,
+  (district: string) => `${district} 전체인테리어, 현장 정보부터 알려주세요`,
+  (district: string) => `${district} 공간을 새롭게 바꿀 계획이 있으신가요?`,
+  (district: string) => `${district} 주거·상업 인테리어 상담을 시작하세요`,
+  (district: string) => `${district} 인테리어, 구조와 용도부터 함께 확인합니다`,
+  (district: string) => `${district} 아파트·매장 전체인테리어 상담`,
+  (district: string) => `${district} 집·사무실 인테리어 계획을 상담하세요`,
+  (district: string) => `${district} 전체 공간 시공, 방문 상담부터 시작합니다`,
+  (district: string) => `${district} 인테리어 공사 범위를 함께 정리해드립니다`,
+  (district: string) => `${district} 공간 목적에 맞는 전체인테리어 상담`,
+  (district: string) => `${district} 주거와 상업공간, 각각 맞는 방향으로`,
 ] as const;
 
 function stableHash(value: string) {

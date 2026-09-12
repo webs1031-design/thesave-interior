@@ -182,10 +182,10 @@ export async function generateMetadata({
   return {
     title: {
       absolute:
-        "서울 인테리어업체 | 아파트·주택·매장·사무실 전체인테리어",
+        "서울 인테리어업체 | 아파트·주택·매장·사무실 전체인테리어 전문",
     },
     description:
-      "서울 인테리어업체 더세이브인테리어. 서울 25개 구 아파트·집·주택·빌라·오피스텔 주거 전체인테리어와 매장·상가·카페·음식점·사무실 상업 전체인테리어 상담. 공간 전체 설계와 시공을 진행합니다.",
+      "서울 인테리어업체 더세이브인테리어. 서울 25개 구의 아파트·집·주택·빌라·오피스텔 주거 전체인테리어와 매장·상가·카페·음식점·사무실 상업 전체인테리어를 공간 목적과 동선에 맞춰 설계·시공합니다.",
     robots: {
       index: true,
       follow: true,
@@ -218,7 +218,7 @@ export default async function CityPage({ params }: PageProps) {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "서울 전체인테리어 서비스",
+    name: "서울 인테리어업체 더세이브인테리어 전체인테리어 서비스",
     serviceType: [
       "인테리어",
       "전체인테리어",
@@ -237,7 +237,7 @@ export default async function CityPage({ params }: PageProps) {
       name: "서울",
     },
     description:
-      "서울 25개 구의 아파트, 집, 주택, 빌라, 오피스텔과 매장, 상가, 카페, 음식점, 사무실을 대상으로 공간 전체의 인테리어 상담과 시공을 진행합니다.",
+      "서울 25개 구의 아파트, 집, 주택, 빌라, 오피스텔과 매장, 상가, 카페, 음식점, 사무실을 대상으로 주거와 상업공간의 목적, 구조, 생활동선과 운영동선을 구분해 전체인테리어 상담과 시공을 진행합니다.",
   };
 
   return (

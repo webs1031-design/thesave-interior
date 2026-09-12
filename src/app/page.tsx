@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Partners from "../components/Partners";
 
 const PHONE_DISPLAY = "010-2269-8352";
 const PHONE_LINK = "01022698352";
@@ -711,6 +712,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* PARTNERS */}
+      <Partners />
 
       {/* CONTACT */}
       <section
